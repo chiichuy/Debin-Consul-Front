@@ -4,27 +4,36 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<title>Debin consul</title>
-	<style type="text/css">
-		.login{
-			width: 250px;
-			background: red;
-		}
-		.login input{
-			width: 240px;
-			height: 30px;
-			margin: 2px auto;
-			font-size: 1.7em;
-		}
-	</style>
+	<link rel="stylesheet" href="css/estilos.css">
 </head>
 <body>
 	<header></header>
+
 	<section class="container">
 		<div class="login">
-			<input type="text" placeholder="Usuario"/>
-			<input tyoe="password" placeholder="Contraseña"/>
+			<div class="loginLogo">
+				<figure>
+					<img src="img/logo.png" alt="Debin consul logo"/>
+				</figure>
+			</div>
+			<div class="loginBox">
+				<div class="loginBoxHeader"></div>
+				<div class="loginBoxBody">
+					<div class="loginUsuario">
+						<span>Usuario:</span>
+						<input type="text" placeholder="Usuario"/>
+					</div>
+					<div class="loginPassword">
+						<span>Contraseña:</span>
+						<input type="password" placeholder="Contraseña"/>
+					</div>
+					<a href="#" class="boton">Entrar</a>
+					<a href="#" class="boton">Ayuda</a>
+				</div>
+			</div>
 		</div>
 	</section>
+
 	<footer></footer>
 </body>
 </html>

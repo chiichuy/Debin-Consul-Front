@@ -1,0 +1,54 @@
+@import "normalize.styl"
+
+azul = #0c6d96
+azulClaro = #c4d4df
+gris = #999
+grisClaro = #e6e6e6
+
+.login
+	margin 0 auto
+	max-width 400px
+	.loginBox
+		.loginBoxBody
+			background azul
+			border-bottom-right-radius: 3em;
+			color grisClaro
+			font-size 1.2em
+			padding 1em 0.5em
+			.loginUsuario
+				margin-bottom .5em
+			.loginPassword
+				margin-bottom 1em
+			a
+				color grisClaro
+				margin-right 1em 
+				padding-left 1.2em
+				text-decoration none
+				&:before
+					background grisClaro
+					border-radius 50%
+					content ""
+					height 1em
+					margin-left -1.2em
+					position absolute
+					width 1em
+			input
+				color gris
+				width 230px
+			span
+				display inline-block
+				width 130px
+		.loginBoxHeader
+			background azul
+			border-top-left-radius: 4em;
+			height 4em
+			margin-bottom .5em
+	.loginLogo
+		overflow hidden
+		figure
+			float right
+			max-width 100px
+			img
+				height 100%
+				width 100%
+
