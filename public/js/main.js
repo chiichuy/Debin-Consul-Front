@@ -8,9 +8,10 @@ $(function () {
 	Backbone.app = new Router();
 });
 
-},{"./routers/router":2,"backbone":4,"jquery":5}],2:[function(require,module,exports){
+},{"./routers/router":2,"backbone":5,"jquery":6}],2:[function(require,module,exports){
 var Backbone	= require('backbone'),
-	Login 		= require('../views/login');
+	Login 		= require('../views/login'),
+	Utils		= require('../utils/utils');
 
 module.exports = Backbone.Router.extend({
 	routes:{
@@ -18,8 +19,14 @@ module.exports = Backbone.Router.extend({
 		"test":"test"
 	},
 	initialize : function(){
+		this.galleta = Utils.getCookie('debinConsul');
+		if (this.galleta == ""){
+			alert("has login!!");
+		}else{
+			alert('tu galleta es: ' + this.galleta);
+		}
+
 		this.login = new Login();
-		console.log("hola mundo");
 		Backbone.history.start();
 	},
 	login:function(){
@@ -29,20 +36,41 @@ module.exports = Backbone.Router.extend({
 		console.log(name);
 	}
 });
-},{"../views/login":3,"backbone":4}],3:[function(require,module,exports){
+},{"../utils/utils":3,"../views/login":4,"backbone":5}],3:[function(require,module,exports){
+module.exports = {
+	setCookie: function(cname,cvalue,exdays){
+		var d = new Date();
+		d.setTime(d.getTime()+(exdays*24*60*60*1000));
+		var expires = "expires="+d.toGMTString();
+		document.cookie = cname + "=" + cvalue + "; " + expires;
+	},
+	getCookie:function (cname){
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		for(var i=0; i<ca.length; i++){
+		  	var c = ca[i].trim();
+			if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+		}
+		return "";
+	}
+};
+},{}],4:[function(require,module,exports){
 var Backbone	= require('backbone'),
-	$			= require('jquery');
+	$			= require('jquery'),
+	Utils		= require('../utils/utils');
 
 module.exports = Backbone.View.extend({
 	el: $('#login'),
 	events:{
-		"click a.entrar" : "login"
+		"click a.entrar" : "login",
+		'keypress input' : 'login'
 	},
 	login:function(e){
 		var usuario = $('#loginUsuario').val();
 		var pass = $('#loginPass').val();
-		var url = 'http://consul.herokuapp.com/oauth2/access_token';
-		var data = 'grant_type=password&client_id=5ea5050ce4532a46822d&client_secret=6782a3892b27b70904539b51a5d12cd675db28d3&username='+usuario+'&password='+pass;
+		var url = 'http://consul.herokuapp.com/api-token-auth/';
+		//var dataOauth2 = 'grant_type=password&client_id=id&client_secret=secret&username='+usuario+'&password='+pass;
+		var data = 'username='+usuario+'&password='+pass;
 
 		$.ajax({
           url: url,  
@@ -53,6 +81,7 @@ module.exports = Backbone.View.extend({
           data:data,
           success:function(res){
         	console.log("exito",res);
+        	Utils.setCookie('debinConsul','Token ' + res.token,1);
           },
           error:function(){
           	console.log("error");
@@ -62,7 +91,7 @@ module.exports = Backbone.View.extend({
 		e.preventDefault();
 	}
 });
-},{"backbone":4,"jquery":5}],4:[function(require,module,exports){
+},{"../utils/utils":3,"backbone":5,"jquery":6}],5:[function(require,module,exports){
 //     Backbone.js 1.1.2
 
 //     (c) 2010-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -1672,7 +1701,7 @@ module.exports = Backbone.View.extend({
 
 }));
 
-},{"underscore":6}],5:[function(require,module,exports){
+},{"underscore":7}],6:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.0
  * http://jquery.com/
@@ -10785,7 +10814,7 @@ return jQuery;
 
 }));
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 //     Underscore.js 1.6.0
 //     http://underscorejs.org
 //     (c) 2009-2014 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors

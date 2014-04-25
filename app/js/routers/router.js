@@ -1,5 +1,6 @@
 var Backbone	= require('backbone'),
-	Login 		= require('../views/login');
+	Login 		= require('../views/login'),
+	Utils		= require('../utils/utils');
 
 module.exports = Backbone.Router.extend({
 	routes:{
@@ -7,8 +8,14 @@ module.exports = Backbone.Router.extend({
 		"test":"test"
 	},
 	initialize : function(){
+		this.galleta = Utils.getCookie('debinConsul');
+		if (this.galleta == ""){
+			alert("has login!!");
+		}else{
+			alert('tu galleta es: ' + this.galleta);
+		}
+
 		this.login = new Login();
-		console.log("hola mundo");
 		Backbone.history.start();
 	},
 	login:function(){
