@@ -6,6 +6,10 @@ var gulp        = require('gulp'),
     minifyCSS   = require('gulp-minify-css'),
     minifyHTML  = require('gulp-minify-html'),
     browserify  = require('gulp-browserify');
+    handlebars  = require('gulp-handlebars');
+    defineModule= require('gulp-define-module');
+    concat      = require('gulp-concat');
+    declare     = require('gulp-declare');
 
 gulp.task('js', function () {
   gulp.src('app/js/main.js')
@@ -55,5 +59,13 @@ gulp.task('data', function () {
     .pipe(gulp.dest('./public'));
 });
 
-gulp.task('default', [ 'js-dev', 'css', 'images', 'html', 'fonts', 'data' ]);
-gulp.task('prod', [ 'js', 'css', 'images', 'html', 'fonts', 'data' ]);
+gulp.task('templates', function(){
+  gulp.src(['app/handlebars/*.html'])
+    .pipe(minifyHTML())
+    .pipe(handlebars())
+    .pipe(defineModule('node'))
+    .pipe(gulp.dest('./app/js/templates'));
+});
+
+gulp.task('default', [ 'templates','js-dev', 'css', 'images', 'html', 'fonts', 'data' ]);
+gulp.task('prod', [ 'templates','js', 'css', 'images', 'html', 'fonts', 'data' ]);

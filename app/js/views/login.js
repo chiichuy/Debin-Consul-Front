@@ -2,13 +2,14 @@ var Backbone	= require('backbone'),
 	$			= require('jquery'),
 	Handlebars	= require('handlebars'),
 	Utils		= require('../utils/utils');
+	Login 		= require('../templates/login');
 	app        	= Backbone.app;
 
 module.exports = Backbone.View.extend({
 	tagName: "div",
 	className: "login",
 	el: $('#container'),
-	template: Handlebars.compile($('#templateLogin').html()),
+	template: Handlebars.compile(Login()),
 	events:{
 		"click a.entrar" : "login",
 		'keypress input' : 'validarEnter'
