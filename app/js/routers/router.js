@@ -1,27 +1,31 @@
 var Backbone	= require('backbone'),
 	Login 		= require('../views/login'),
 	Utils		= require('../utils/utils');
+	$			= require('jquery');
 
 module.exports = Backbone.Router.extend({
 	routes:{
-		"":"login",
-		"test":"test"
+		"login":"login",
+		"hola":"test"
 	},
 	initialize : function(){
 		this.galleta = Utils.getCookie('debinConsul');
+		
+		Backbone.history.start({pushState: false});
+
 		if (this.galleta == ""){
-			alert("has login!!");
+			this.navigate("login", {trigger: true});
 		}else{
-			alert('tu galleta es: ' + this.galleta);
+			this.navigate("hola", {trigger: true});
 		}
 
-		this.login = new Login();
-		Backbone.history.start();
+		
 	},
 	login:function(){
-		console.log("index");
+		this.loginView = new Login();
+		this.loginView.render();
 	},
-	test:function(name){
-		console.log(name);
+	test:function(){
+		$('#container').html('<h1>Hola ya no eres un extanio');
 	}
 });
