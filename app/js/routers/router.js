@@ -1,5 +1,6 @@
 var Backbone	= require('backbone'),
 	Login 		= require('../views/login'),
+	Agenda 		= require('../views/agenda'),
 	Utils		= require('../utils/utils');
 	$			= require('jquery');
 
@@ -26,6 +27,7 @@ module.exports = Backbone.Router.extend({
 		this.loginView.render();
 	},
 	test:function(){
-		$('#container').html('<h1>Hola ya no eres un extanio');
+		this.agendaView = new Agenda();
+		this.agendaView.render();
 	}
 });

@@ -3,7 +3,6 @@ var Backbone	= require('backbone'),
 	Handlebars	= require('handlebars'),
 	Utils		= require('../utils/utils');
 	Login 		= require('../templates/login');
-	app        	= Backbone.app;
 
 module.exports = Backbone.View.extend({
 	tagName: "div",
