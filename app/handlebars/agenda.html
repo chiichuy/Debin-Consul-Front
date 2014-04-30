@@ -1,24 +1,26 @@
 <div class="agendaView">
-	<h1>Agenda</h1>
-	<div class="dias">
-		<a href="#" id="dia">D</a>
-		<a href="#" id="semana">S</a>
-		<a href="#" id="buscar">B</a>
-	</div>
+	<h2>Agenda</h2>
 	<div class="agenda">
+		<div class="dias">
+			<a href="#" id="dia">D</a>
+			<a href="#" id="semana">S</a>
+			<a href="#" id="buscar">B</a>
+		</div>
 		<div class='cabeza'>
 			<span class="dia">Miercoles 30 de abril</span>
 			<span class="hora">Hora</span>
 		</div>
 		<div class="cuerpo">
-			<div class="renglon">
-				<div class="descripcion">
-					<span>Ir para algun lugar</span>
+			{{#each renglones}}
+				<div class="renglon">
+					<div class="descripcion">
+						<span>{{descripcion}}</span>
+					</div>
+					<div class="horaRenglon">
+						<span>{{hora}}</span>
+					</div>
 				</div>
-				<div class="horaRenglon">
-					<span>6:00AM</span>
-				</div>
-			</div>
+			{{/each}}
 		</div>
 	</div>
 </div>

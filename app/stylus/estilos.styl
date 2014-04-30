@@ -51,4 +51,42 @@ grisClaro = #e6e6e6
 			img
 				height 100%
 				width 100%
-
+.agendaView
+	h2
+		color azul
+	.agenda
+		
+		.cabeza
+			background azul
+			color white
+			width 100%
+			span
+				display inline-block
+			.dia
+				width 79%
+			.hora
+				width 19%
+				font-align right
+		.cuerpo
+			.renglon
+				background grisClaro
+				border-bottom 1px solid azul
+				.descripcion
+				.horaRenglon
+					display inline-block
+					padding-left 1em
+				.descripcion
+					color black
+					border-right 1px solid azul
+					width 79%
+				.horaRenglon
+					color azul
+					width 18%
+		.dias
+			overflow hidden
+			a
+				text-decoration none
+				color azul
+				font-weight bold
+				background grisClaro	
+				float right
