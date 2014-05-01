@@ -55,9 +55,9 @@ td,th{padding:0}
 .agendaView .agenda .cabeza span{display:inline-block}
 .agendaView .agenda .cabeza .dia{width:79%}
 .agendaView .agenda .cabeza .hora{width:19%;font-align:right}
-.agendaView .agenda .cuerpo .renglon{background:#e6e6e6;border-bottom:1px solid #0c6d96}
-.agendaView .agenda .cuerpo .renglon .descripcion,.agendaView .agenda .cuerpo .renglon .horaRenglon{display:inline-block;padding-left:1em}
+.agendaView .agenda .cuerpo .renglon{background:#e6e6e6;border-bottom:1px solid #0c6d96;padding-left:1em;height:3em}
+.agendaView .agenda .cuerpo .renglon .descripcion,.agendaView .agenda .cuerpo .renglon .horaRenglon{display:inline-block;height:3em;vertical-align:middle}
 .agendaView .agenda .cuerpo .renglon .descripcion{color:#000;border-right:1px solid #0c6d96;width:79%}
-.agendaView .agenda .cuerpo .renglon .horaRenglon{color:#0c6d96;width:18%}
+.agendaView .agenda .cuerpo .renglon .horaRenglon{color:#0c6d96;text-align:center;width:18%}
 .agendaView .agenda .dias{overflow:hidden}
 .agendaView .agenda .dias a{text-decoration:none;color:#0c6d96;font-weight:700;background:#e6e6e6;float:right}

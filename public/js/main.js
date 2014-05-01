@@ -51,15 +51,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 function program1(depth0,data) {
   
-  var buffer = "", stack1, helper;
-  buffer += "<div class=renglon><div class=descripcion><span>";
-  if (helper = helpers.descripcion) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.descripcion); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span></div><div class=horaRenglon><span>";
-  if (helper = helpers.hora) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.hora); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
+  var buffer = "", stack1;
+  buffer += "<div class=renglon><div class=descripcion><span>"
+    + escapeExpression(((stack1 = (depth0 && depth0.descripcion)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span></div><div class=horaRenglon><span>"
+    + escapeExpression(((stack1 = (depth0 && depth0.hora)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
     + "</span></div></div>";
   return buffer;
   }
@@ -107,13 +103,13 @@ module.exports = Backbone.View.extend({
 	tagName: "div",
 	className: "agenda",
 	el: $('#container'),
-	renglones:[
+	renglones:{renglones:[
 		{descripcion:"Hola mundo",hora:"2:12PM"},
 		{descripcion:"Hola mundo 2",hora:"2:49PM"}
-	],
-	template: Handlebars.compile(Agenda(this.renglones)),
+	]},
+	template: Agenda,
 	render: function() { 
-    	$("#container").html(this.template());
+    	$("#container").html(this.template(this.renglones));
   	}
 });
 },{"../templates/agenda":3,"backbone":8,"handlebars":24,"jquery":25}],7:[function(require,module,exports){

@@ -7,12 +7,12 @@ module.exports = Backbone.View.extend({
 	tagName: "div",
 	className: "agenda",
 	el: $('#container'),
-	renglones:[
+	renglones:{renglones:[
 		{descripcion:"Hola mundo",hora:"2:12PM"},
 		{descripcion:"Hola mundo 2",hora:"2:49PM"}
-	],
-	template: Handlebars.compile(Agenda(this.renglones)),
+	]},
+	template: Agenda,
 	render: function() { 
-    	$("#container").html(this.template());
+    	$("#container").html(this.template(this.renglones));
   	}
 });
